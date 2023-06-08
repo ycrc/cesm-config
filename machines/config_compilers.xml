@@ -37,7 +37,7 @@ Author: Alex Domingo (Vrije Universiteit Brussel)
 
 <config_compilers>
 
-  <compiler MACH="hydra">
+  <compiler MACH="grace_mpi">
     <ESMF_LIBDIR>$ENV{EBROOTESMF}/lib</ESMF_LIBDIR>
     <NETCDF_PATH>$ENV{EBROOTNETCDF}</NETCDF_PATH>
     <NETCDF_C_PATH>$ENV{EBROOTNETCDFMINCPLUSPLUS4}</NETCDF_C_PATH>
@@ -45,7 +45,7 @@ Author: Alex Domingo (Vrije Universiteit Brussel)
     <PNETCDF_PATH>$ENV{EBROOTPNETCDF}</PNETCDF_PATH>
     <PIO_FILESYSTEM_HINTS>gpfs</PIO_FILESYSTEM_HINTS>
   </compiler>
-  <compiler MACH="hydra" COMPILER="gnu">
+  <compiler MACH="grace_mpi" COMPILER="gnu">
     <MPICC> mpicc  </MPICC>
     <MPICXX> mpicxx </MPICXX>
     <MPIFC> mpifort </MPIFC>
@@ -63,97 +63,6 @@ Author: Alex Domingo (Vrije Universiteit Brussel)
       <append> -L$ENV{EBROOTSCALAPACK}/lib -lscalapack -L$ENV{EBROOTOPENBLAS}/lib -lopenblas </append>
       <append> -L$ENV{EBROOTNETCDFMINFORTRAN}/lib -lnetcdff -L$ENV{EBROOTNETCDF}/lib -lnetcdf </append>
     </SLIBS>
-  </compiler>
-  <compiler MACH="hydra" COMPILER="intel">
-    <MPICC> mpiicc  </MPICC>
-    <MPICXX> mpiicpc </MPICXX>
-    <MPIFC> mpiifort </MPIFC>
-    <SCC> icc </SCC>
-    <SCXX> icpc </SCXX>
-    <SFC> ifort </SFC>
-    <CFLAGS>
-      <append DEBUG="FALSE"> -xCOMMON-AVX512 -no-fma </append>
-    </CFLAGS>
-    <FFLAGS>
-      <append DEBUG="FALSE"> -xCOMMON-AVX512 -no-fma </append>
-    </FFLAGS>
-    <SLIBS>
-      <append> -L$ENV{EBROOTNETCDFMINFORTRAN}/lib -lnetcdff -L$ENV{EBROOTNETCDF}/lib -lnetcdf </append>
-    </SLIBS>
-  </compiler>
-
-  <compiler MACH="hortense">
-    <ESMF_LIBDIR>$ENV{EBROOTESMF}/lib</ESMF_LIBDIR>
-    <NETCDF_PATH>$ENV{EBROOTNETCDF}</NETCDF_PATH>
-    <NETCDF_C_PATH>$ENV{EBROOTNETCDFMINCPLUSPLUS4}</NETCDF_C_PATH>
-    <NETCDF_FORTRAN_PATH>$ENV{EBROOTNETCDFMINFORTRAN}</NETCDF_FORTRAN_PATH>
-    <PNETCDF_PATH>$ENV{EBROOTPNETCDF}</PNETCDF_PATH>
-    <PIO_FILESYSTEM_HINTS>lustre</PIO_FILESYSTEM_HINTS>
-  </compiler>
-  <compiler MACH="hortense" COMPILER="gnu">
-    <MPICC> mpicc  </MPICC>
-    <MPICXX> mpicxx </MPICXX>
-    <MPIFC> mpifort </MPIFC>
-    <SCC> gcc </SCC>
-    <SCXX> g++ </SCXX>
-    <SFC> gfortran </SFC>
-    <CFLAGS>
-      <append DEBUG="FALSE"> -O2 </append>
-    </CFLAGS>
-    <FFLAGS>
-      <append DEBUG="FALSE"> -O2 </append>
-      <append> -fallow-argument-mismatch -fallow-invalid-boz </append>
-    </FFLAGS>
-    <SLIBS>
-      <append> -L$ENV{EBROOTSCALAPACK}/lib -lscalapack -L$ENV{EBROOTOPENBLAS}/lib -lopenblas </append>
-      <append> -L$ENV{EBROOTNETCDFMINFORTRAN}/lib -lnetcdff -L$ENV{EBROOTNETCDF}/lib -lnetcdf </append>
-    </SLIBS>
-  </compiler>
-
-  <compiler MACH="breniac" COMPILER="intel">
-    <MPICC> mpiicc  </MPICC>
-    <MPICXX> mpiicpc </MPICXX>
-    <MPIFC> mpiifort </MPIFC>
-    <SCC> icc </SCC>
-    <SCXX> icpc </SCXX>
-    <SFC> ifort </SFC>
-    <CFLAGS>
-      <append DEBUG="FALSE"> -xCORE_AVX2 -no-fma </append>
-    </CFLAGS>
-    <FFLAGS>
-      <append DEBUG="FALSE"> -xCORE_AVX2 -no-fma </append>
-    </FFLAGS>
-    <SLIBS>
-      <append> -L$ENV{EBROOTNETCDFMINFORTRAN}/lib -lnetcdff -L$ENV{EBROOTNETCDF}/lib64 -lnetcdf </append>
-    </SLIBS>
-    <ESMF_LIBDIR>$ENV{EBROOTESMF}/lib</ESMF_LIBDIR>
-    <NETCDF_PATH>$ENV{EBROOTNETCDF}</NETCDF_PATH>
-    <NETCDF_C_PATH>$ENV{EBROOTNETCDFMINCPLUSPLUS4}</NETCDF_C_PATH>
-    <NETCDF_FORTRAN_PATH>$ENV{EBROOTNETCDFMINFORTRAN}</NETCDF_FORTRAN_PATH>
-    <PIO_FILESYSTEM_HINTS>gpfs</PIO_FILESYSTEM_HINTS>
-  </compiler>
-
-  <compiler MACH="breniac-skl" COMPILER="intel">
-    <MPICC> mpiicc  </MPICC>
-    <MPICXX> mpiicpc </MPICXX>
-    <MPIFC> mpiifort </MPIFC>
-    <SCC> icc </SCC>
-    <SCXX> icpc </SCXX>
-    <SFC> ifort </SFC>
-    <CFLAGS>
-      <append DEBUG="FALSE"> -xCOMMON-AVX512 -no-fma </append>
-    </CFLAGS>
-    <FFLAGS>
-      <append DEBUG="FALSE"> -xCOMMON-AVX512 -no-fma </append>
-    </FFLAGS>
-    <SLIBS>
-      <append> -L$ENV{EBROOTNETCDFMINFORTRAN}/lib -lnetcdff -L$ENV{EBROOTNETCDF}/lib64 -lnetcdf </append>
-    </SLIBS>
-    <ESMF_LIBDIR>$ENV{EBROOTESMF}/lib</ESMF_LIBDIR>
-    <NETCDF_PATH>$ENV{EBROOTNETCDF}</NETCDF_PATH>
-    <NETCDF_C_PATH>$ENV{EBROOTNETCDFMINCPLUSPLUS4}</NETCDF_C_PATH>
-    <NETCDF_FORTRAN_PATH>$ENV{EBROOTNETCDFMINFORTRAN}</NETCDF_FORTRAN_PATH>
-    <PIO_FILESYSTEM_HINTS>gpfs</PIO_FILESYSTEM_HINTS>
   </compiler>
 
 </config_compilers>
